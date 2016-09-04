@@ -4,7 +4,10 @@ import numpy
 import matplotlib.pyplot as plt
 import clawpack.pyclaw.solution as sol
 
-for i in xrange(20):
+file = open('num_steps.txt', 'r')
+num_steps = file.read()
+
+for i in xrange(int(num_steps)):
     mySolution = sol.Solution(i, path='./numerical_output')
     fig = plt.figure()
     axes = fig.add_subplot(1, 1, 1)
