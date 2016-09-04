@@ -28,8 +28,16 @@ func f(x: Double) -> Double
 
 var solution = Solution(n: equations, i: gridCells, x: x_lower, x_space: dx, t: time, method: f)
 
+var num_steps = 20
+var stepString = String(num_steps)
+let path = "~/Desktop/swiftclaw/num_steps.txt"     // swiftclaw directory has to be on desktop
+do {
+    try stepString.writeToFile(NSString(string: path).stringByExpandingTildeInPath, atomically: true, encoding: NSUTF8StringEncoding)
+} catch _ {
+}
+
 solution.writeToFile(0)
-for i in 1 ..< 20
+for i in 1 ..< num_steps
 {
     step(solution, dt: 0.8, num_ghost: 2, problem_data: problem_data, solver_method: advection_1d)
     solution.writeToFile(i)
